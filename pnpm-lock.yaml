@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@formkit/themes': 1.0.0-beta.8
   '@formkit/vue': 1.0.0-beta.8
   '@vitejs/plugin-vue': ^2.3.1
   autoprefixer: ^10.4.7
@@ -22,6 +23,7 @@ specifiers:
   vue-router: ^4.0.14
 
 dependencies:
+  '@formkit/themes': 1.0.0-beta.8_tailwindcss@3.0.24
   '@formkit/vue': 1.0.0-beta.8_vue@3.2.36
   axios: 0.27.2
   daisyui: 2.15.1_ugi4xkrfysqkt4c4y6hkyfj344
@@ -121,6 +123,24 @@ packages:
       '@formkit/core': 1.0.0-beta.8
       '@formkit/utils': 1.0.0-beta.8
       '@formkit/validation': 1.0.0-beta.8
+    dev: false
+
+  /@formkit/themes/1.0.0-beta.8_tailwindcss@3.0.24:
+    resolution: {integrity: sha512-/dXgO37caePqqDgoE/E4/UYhbyOms5VRu4iagsgIGdhs/WTcZsUUeIFrPTavcRXzzFh/kmoMYe2PoP+sQyYTgw==}
+    peerDependencies:
+      tailwindcss: ^3.0.0
+      unocss: ^0.31.0
+      windicss: ^3.0.0
+    peerDependenciesMeta:
+      tailwindcss:
+        optional: true
+      unocss:
+        optional: true
+      windicss:
+        optional: true
+    dependencies:
+      '@formkit/core': 1.0.0-beta.8
+      tailwindcss: 3.0.24
     dev: false
 
   /@formkit/utils/1.0.0-beta.8:

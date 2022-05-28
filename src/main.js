@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'
 import './assets/base.css'
 import { plugin, defaultConfig } from '@formkit/vue'
 import 'flowbite'
+import '@formkit/themes/genesis'
 
 import App from './App.vue'
 import router from './router'
