@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar/>
-    <div class="flex items-center justify-center px-5">
+    <div class="flex items-center justify-center px-5 mb-5">
       <nav class="flex" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
           <li class="inline-flex items-center">
@@ -20,7 +20,7 @@
       </nav>
     </div>
     <div class="min-w-screen flex justify-center px-5 pb-10">
-      <div class="card w-90 bg-base-100 shadow-xl">
+      <div class="card min-w-full bg-base-100 hover:bg-base-200 shadow-xl">
         <div class="card-body">
           <h2 class="card-title my-2">
             <div class="avatar mr-2">
@@ -131,7 +131,8 @@
                 <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                   <div class="py-2 px-4 bg-white rounded-t-lg dark:bg-gray-800">
                     <label for="comment" class="sr-only">Your comment</label>
-                    <textarea id="comment" rows="3" class="px-0 w-full text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:outline-none dark:text-white dark:placeholder-gray-400" placeholder="Write an answer..." required></textarea>
+                    <textarea id="comment" rows="3" class="px-0 w-full text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:outline-none dark:text-white dark:placeholder-gray-400" v-model="commentForm.body" placeholder="Write an answer..." required>
+                    </textarea>
                   </div>
                   <div class="flex justify-end items-center py-2 px-3 border-t dark:border-gray-600">
                     <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
@@ -165,7 +166,7 @@ export default {
     return {
       question: {
         id: 1,
-        question: 'Diketahui vektor a = 4i - 2j +2k dan vektor b = 2i - 6j + 4k. proyeksi orthogonal vektor b pada vektor a adalah....',
+        question: 'Apa arti hiddup?',
         subject: 'Matematika',
         created_at: moment().format('MMMM DD YYYY, h:mm:ss a'),
         user: {
@@ -216,6 +217,9 @@ export default {
             created_at: moment().format('MMMM DD YYYY, h:mm:ss a')
           }
         ]
+      },
+      commentForm: {
+        body: ''
       }
     }
   }
