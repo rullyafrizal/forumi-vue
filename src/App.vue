@@ -1,6 +1,29 @@
-<script setup>
+<script>
 import { RouterView } from 'vue-router'
 import { FormKit } from '@formkit/vue'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+export default {
+  name: 'App',
+  components: {
+    RouterView,
+    FormKit
+  },
+  data () {
+    return {
+      ckEditor: {
+        editor: ClassicEditor,
+        editorConfig: {
+          // The configuration of the editor.
+        }
+      },
+      formQuestion: {
+        title: '',
+        subject: '',
+        details: ''
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -13,18 +36,28 @@ import { FormKit } from '@formkit/vue'
         <FormKit
             type="text"
             label="Subject"
-            help="Enter your question subject"
+            help="The subject of the question"
             validation="required"
             validation-visibility="live"
+            v-model="formQuestion.subject"
         />
         <FormKit
             type="textarea"
-            label="Your Question"
-            rows="6"
+            label="Judul Pertanyaan"
+            rows="3"
             validation="required"
-            placeholder="Remember to write in complete and clear sentences."
-            help="Write your question here"
+            v-model="formQuestion.title"
+            placeholder="Write down the question title in here"
+            help="The title of the question, which will appear in questions card in homepage"
         />
+        <label for="comment" class="font-bold text-xs">Question Details</label>
+        <ckeditor
+            :editor="ckEditor.editor"
+            v-model="formQuestion.details"
+            :config="ckEditor.editorConfig"
+            placeholder="Write down the question details in here"
+        >
+        </ckeditor>
       </div>
       <div class="modal-action">
         <label :for="'create-modal'" class="btn btn-sm btn-outline">Cancel</label>

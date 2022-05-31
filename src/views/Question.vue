@@ -20,7 +20,7 @@
       </nav>
     </div>
     <div class="min-w-screen flex justify-center px-5 pb-10">
-      <div class="card min-w-full bg-base-100 hover:bg-base-200 shadow-xl">
+      <div class="card xl:w-1/2 md:w-3/4 sm:w-full bg-base-100 hover:bg-base-200 shadow-xl">
         <div class="card-body">
           <h2 class="card-title my-2">
             <div class="avatar mr-2">
@@ -31,12 +31,82 @@
             <div class="badge badge-outline">{{ question.user.name }}</div>
           </h2>
           <h2 class="card-title">
-            <div class="font-semibold">
+            <div class="font-semibold text-xl">
               {{ question.subject}}
             </div>
           </h2>
-          <p>{{ question.question }}</p>
-          <div class="card-actions justify-end mt-5">
+          <h2 class="font-semibold">{{ question.title }}</h2>
+          <div class="border-2 rounded-xl p-5 border-dashed border-gray-300">
+            <p v-html="question.body"></p>
+          </div>
+          <aside class="mt-3">
+            <div class="flex justify-end items-center mt-3 space-x-3 divide-x divide-gray-200 dark:divide-gray-600">
+              <ul class="menu menu-horizontal bg-base-100 shadow-lg rounded-box">
+                <li>
+                  <label :for="'edit-question-modal-' + question.id">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pencil-square h-4 w-4" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                  </label>
+
+                  <!-- Put this part before </body> tag -->
+                  <input type="checkbox" :id="'edit-question-modal-' + question.id" class="modal-toggle" />
+                  <div class="modal modal-bottom sm:modal-middle">
+                    <div class="modal-box">
+                      <h3 class="font-bold text-lg">Edit question #{{ editQuestionForm.id }}</h3>
+                      <div class="mt-3">
+                        <FormKit
+                            type="text"
+                            label="Subject"
+                            help="The subject of the question"
+                            validation="required"
+                            validation-visibility="live"
+                            v-model="editQuestionForm.subject"
+                        />
+                        <FormKit
+                            type="text"
+                            label="Judul Pertanyaan"
+                            rows="3"
+                            validation="required"
+                            v-model="editQuestionForm.title"
+                            placeholder="Write down the question title in here"
+                            help="The title of the question, which will appear in questions card in homepage"
+                        />
+                        <ckeditor :editor="ckEditor.editor" v-model="editQuestionForm.body" :config="ckEditor.editorConfig"></ckeditor>
+                      </div>
+                      <div class="modal-action">
+                        <label :for="'edit-question-modal-' + question.id" class="btn btn-outline">Cancel</label>
+                        <label :for="'edit-question-modal-' + question.id" class="btn">Submit Change</label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="bg-red-600">
+                  <label :for="'dlt-question-modal-' + question.id">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-white h-4 w-4 bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                  </label>
+
+                  <!-- Put this part before </body> tag -->
+                  <input type="checkbox" :id="'dlt-question-modal-' + question.id" class="modal-toggle" />
+                  <div class="modal modal-bottom sm:modal-middle">
+                    <div class="modal-box">
+                      <h3 class="font-bold text-lg">Delete Confirmation #{{ question.id }}</h3>
+                      <p class="py-4">Are you sure you want to delete this question?</p>
+                      <div class="modal-action">
+                        <label :for="'dlt-question-modal-' + question.id" class="btn btn-outline">Cancel</label>
+                        <label :for="'dlt-question-modal-' + question.id" class="btn">Delete</label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          <div class="card-actions justify-end mt-2">
             <div class="font-semibold text-md badge badge-outline">{{ question.created_at }}</div>
           </div>
         </div>
@@ -54,7 +124,7 @@
                 <div class="flex-shrink-0">
                   <div class="avatar mr-2">
                     <div class="w-4 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                      <img src="https://api.lorem.space/image/face?hash=3174" />
+                      <img src="https://api.lorem.space/image/face?hash=3174"  alt="avatar"/>
                     </div>
                   </div>
                 </div>
@@ -72,8 +142,7 @@
               </div>
               <div class="flex items-center space-x-4 mt-5">
                 <div class="">
-                  <p class="break-words">
-                    {{ answer.body }}
+                  <p class="break-words" v-html="answer.body">
                   </p>
                 </div>
               </div>
@@ -92,8 +161,10 @@
                       <input type="checkbox" :id="'edit-modal-' + answer.id" class="modal-toggle" />
                       <div class="modal modal-bottom sm:modal-middle">
                         <div class="modal-box">
-                          <h3 class="font-bold text-lg">This is edit {{ answer.id }}</h3>
-                          <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                          <h3 class="font-bold text-lg">Edit answer #{{ answer.id }}</h3>
+                          <div class="mt-3">
+                            <ckeditor :editor="ckEditor.editor" v-model="answer.body" :config="ckEditor.editorConfig"></ckeditor>
+                          </div>
                           <div class="modal-action">
                             <label :for="'edit-modal-' + answer.id" class="btn btn-outline">Cancel</label>
                             <label :for="'edit-modal-' + answer.id" class="btn">Submit Change</label>
@@ -113,8 +184,8 @@
                       <input type="checkbox" :id="'delete-modal-' + answer.id" class="modal-toggle" />
                       <div class="modal modal-bottom sm:modal-middle">
                         <div class="modal-box">
-                          <h3 class="font-bold text-lg">This is delete {{ answer.id }}</h3>
-                          <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                          <h3 class="font-bold text-lg">Delete Confirmation #{{ answer.id }}</h3>
+                          <p class="py-4">Are you sure you want to delete this answer?</p>
                           <div class="modal-action">
                             <label :for="'delete-modal-' + answer.id" class="btn btn-outline">Cancel</label>
                             <label :for="'delete-modal-' + answer.id" class="btn">Delete</label>
@@ -129,10 +200,9 @@
             <li class="pt-5">
               <form class="basis-1/2">
                 <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-                  <div class="py-2 px-4 bg-white rounded-t-lg dark:bg-gray-800">
+                  <div class="py-4 px-4 bg-white rounded-t-lg dark:bg-gray-800">
                     <label for="comment" class="sr-only">Your comment</label>
-                    <textarea id="comment" rows="3" class="px-0 w-full text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:outline-none dark:text-white dark:placeholder-gray-400" v-model="commentForm.body" placeholder="Write an answer..." required>
-                    </textarea>
+                    <ckeditor :editor="ckEditor.editor" v-model="commentForm.body" :config="ckEditor.editorConfig"></ckeditor>
                   </div>
                   <div class="flex justify-end items-center py-2 px-3 border-t dark:border-gray-600">
                     <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
@@ -155,18 +225,26 @@ import Navbar from '@/components/Navbar.vue'
 import QuestionCard from '@/components/QuestionCard.vue'
 import Footer from '@/components/Footer.vue'
 import moment from 'moment'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { FormKit } from '@formkit/vue'
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Question',
   components: {
     Navbar,
     QuestionCard,
-    Footer
+    // eslint-disable-next-line vue/no-reserved-component-names
+    Footer,
+    FormKit
   },
   data () {
     return {
       question: {
         id: 1,
-        question: 'Apa arti hiddup?',
+        title: 'Tolong jawab pertanyaan di bawah ini!',
+        body: 'Dalam satu penerimaan pegawai negeri sipil, peluang untuk dapat diterima adalah 5%. Jumlah pelamar yang ikut sebanyak 1.000 orang.\n' +
+            '<br><br>a. tentukan peluang pelamar yang tidak diterima\n' +
+            '<br>b. berapa banyak pelamar yang tidak diterima',
         subject: 'Matematika',
         created_at: moment().format('MMMM DD YYYY, h:mm:ss a'),
         user: {
@@ -219,8 +297,28 @@ export default {
         ]
       },
       commentForm: {
-        body: ''
+        body: '// Write down your answer here'
+      },
+      editQuestionForm: {
+        id: '',
+        title: '',
+        body: '',
+        subject: ''
+      },
+      ckEditor: {
+        editor: ClassicEditor,
+        editorConfig: {
+          // The configuration of the editor.
+        }
       }
+    }
+  },
+  mounted () {
+    this.editQuestionForm = {
+      id: this.question.id,
+      title: this.question.title,
+      body: this.question.body,
+      subject: this.question.subject
     }
   }
 }

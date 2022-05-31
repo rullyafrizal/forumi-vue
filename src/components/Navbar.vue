@@ -19,6 +19,13 @@
               <span class="badge badge-primary font-semibold">&#43;</span> Ask Question
             </label>
           </li>
+          <li>
+            <label for="create-modal">
+              <router-link to="/auth/dashboard">
+                My Questions
+              </router-link>
+            </label>
+          </li>
           <li><a>Logout</a></li>
         </ul>
       </div>
