@@ -21,11 +21,14 @@ specifiers:
   lodash: ^4.17.21
   moment: ^2.29.3
   pinia: ^2.0.13
+  pinia-plugin-persistedstate: ^1.6.1
   postcss: ^8.4.14
   tailwindcss: ^3.0.24
   vite: ^2.9.5
   vue: ^3.2.33
+  vue-axios: ^3.4.1
   vue-router: ^4.0.14
+  vue-toastification: 2.0.0-rc.5
 
 dependencies:
   '@ckeditor/ckeditor5-build-classic': 34.1.0
@@ -40,8 +43,11 @@ dependencies:
   lodash: 4.17.21
   moment: 2.29.3
   pinia: 2.0.14_vue@3.2.36
+  pinia-plugin-persistedstate: 1.6.1_pinia@2.0.14
   vue: 3.2.36
+  vue-axios: 3.4.1_axios@0.27.2+vue@3.2.36
   vue-router: 4.0.15_vue@3.2.36
+  vue-toastification: 2.0.0-rc.5_vue@3.2.36
 
 devDependencies:
   '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.36
@@ -2356,6 +2362,14 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
+  /pinia-plugin-persistedstate/1.6.1_pinia@2.0.14:
+    resolution: {integrity: sha512-4re0ZO5KgqDnSNWX2RhJVIsIYvH+uaEGTN+UOx34mb7fVoE8A3CfB9QhbMT3Zn7ZSBXTfT2cgI/w7cLq2zNQMw==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.0.14_vue@3.2.36
+    dev: false
+
   /pinia/2.0.14_vue@3.2.36:
     resolution: {integrity: sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA==}
     peerDependencies:
@@ -2787,6 +2801,16 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /vue-axios/3.4.1_axios@0.27.2+vue@3.2.36:
+    resolution: {integrity: sha512-8YZYUOQrBEJktxoQtrM4rr2LfVcDaWfJqv8MqtLlgLlkuBvCYKFSZSo6AXQ4YcCzdgccDqstmuaEh68lcH9xWA==}
+    peerDependencies:
+      axios: '>= 0.20.0'
+      vue: ^3.0.0 || ^2.0.0
+    dependencies:
+      axios: 0.27.2
+      vue: 3.2.36
+    dev: false
+
   /vue-demi/0.12.5_vue@3.2.36:
     resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==}
     engines: {node: '>=12'}
@@ -2826,6 +2850,14 @@ packages:
       vue: ^3.2.0
     dependencies:
       '@vue/devtools-api': 6.1.4
+      vue: 3.2.36
+    dev: false
+
+  /vue-toastification/2.0.0-rc.5_vue@3.2.36:
+    resolution: {integrity: sha512-q73e5jy6gucEO/U+P48hqX+/qyXDozAGmaGgLFm5tXX4wJBcVsnGp4e/iJqlm9xzHETYOilUuwOUje2Qg1JdwA==}
+    peerDependencies:
+      vue: ^3.0.2
+    dependencies:
       vue: 3.2.36
     dev: false
 

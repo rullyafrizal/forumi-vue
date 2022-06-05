@@ -48,6 +48,8 @@
 import Navbar from '@/components/Navbar.vue'
 import QuestionCard from '@/components/QuestionCard.vue'
 import Footer from '@/components/Footer.vue'
+import { useConfigStore } from '@/stores/config'
+import { mapState } from 'pinia'
 export default {
   components: {
     Navbar,
@@ -61,6 +63,14 @@ export default {
         search: ''
       }
     }
+  },
+  mounted () {
+
+  },
+  computed: {
+    ...mapState(useConfigStore, {
+      prodBackendUri: 'prod_backend_uri'
+    })
   }
 }
 </script>
