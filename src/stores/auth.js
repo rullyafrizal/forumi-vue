@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('authStore', {
   getters: {
     token: (state) => state._token,
     user: (state) => state._user,
-    isLoggedIn: (state) => Object.keys(state.token).length === 0
+    isGuest: (state) => Object.keys(state._token).length === 0
   },
   persist: {
     key: 'forumi-token',

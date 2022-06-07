@@ -15,12 +15,18 @@ const router = createRouter({
     {
       path: '/auth/login',
       name: 'login',
-      component: () => import('../views/Login.vue')
+      component: () => import('../views/Login.vue'),
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: '/auth/register',
       name: 'register',
-      component: () => import('../views/Register.vue')
+      component: () => import('../views/Register.vue'),
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: '/auth/dashboard',
@@ -31,8 +37,8 @@ const router = createRouter({
       }
     },
     {
-      path: '/question/1',
-      name: 'question1',
+      path: '/question/:id',
+      name: 'question',
       component: () => import('../views/Question.vue'),
       meta: {
         requiresAuth: true
@@ -42,20 +48,29 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(route => route.meta.requiresAuth)) {
-    const auth = JSON.parse(localStorage.getItem('forumi-token'))
-    const isTokenValid = auth && auth._token && moment.unix(auth._token.expiresIn).isAfter(moment.now())
+  const auth = JSON.parse(localStorage.getItem('forumi-token'))
+  const isTokenValid = auth && auth._token && moment.unix(auth._token.expiresIn).isAfter(moment.now())
 
+  if (to.matched.some(route => route.meta.requiresAuth)) {
     if (isTokenValid) {
       next()
       return
     }
+
     next({
       path: '/auth/login',
       query: { redirect: to.name }
     })
     return
   }
+
+  if (isTokenValid) {
+    next({
+      name: from.name
+    })
+    return
+  }
+
   next()
 })
 

@@ -2,13 +2,13 @@
   <div class="card w-96 bg-base-100 shadow-xl">
     <div class="card-body">
       <div>
-        <h2 class="card-title">Matematika</h2>
+        <h2 class="card-title">{{ question.subject }}</h2>
       </div>
       <div>
-        <p class="py-2">Diketahui vektor a = 4i - 2j +2k dan vektor b = 2i - 6j + 4k. proyeksi orthogonal vektor b pada vektor a adalah....</p>
+        <p class="py-2">{{ shortenedTitle(question.title) }}</p>
       </div>
       <div class="card-actions justify-end">
-        <router-link to="/question/1">
+        <router-link :to="`/question/${question.id}`">
           <button class="btn btn-primary">Answer</button>
         </router-link>
       </div>
@@ -18,7 +18,15 @@
 
 <script>
 export default {
-  name: 'QuestionCard'
+  name: 'QuestionCard',
+  props: {
+    question: [Object, Array]
+  },
+  methods: {
+    shortenedTitle (title) {
+      return title.length > 84 ? title.substring(0, 84) + '...' : title
+    }
+  }
 }
 </script>
 

@@ -77,7 +77,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(useAuthStore, ['setToken']),
+    ...mapActions(useAuthStore, ['setToken', 'setUser']),
     async login () {
       this.loading = true
       const toast = UseToast()
@@ -91,13 +91,14 @@ export default {
         if (response.status_code === 200) {
           toast.info('Login Successful')
           this.setToken(response.data.token)
+          this.setUser(response.data.user)
 
           const urlParams = new URLSearchParams(window.location.search)
           const redirect = urlParams.get('redirect')
 
           setTimeout(() => {
             this.loading = false
-            this.$router.push({ name: redirect })
+            redirect ? this.$router.push({ name: redirect }) : this.$router.push('/')
           }, 1000)
         }
       } catch (e) {
