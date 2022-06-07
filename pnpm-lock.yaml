@@ -5,6 +5,8 @@ specifiers:
   '@ckeditor/ckeditor5-vue': ^4.0.1
   '@formkit/themes': 1.0.0-beta.8
   '@formkit/vue': 1.0.0-beta.8
+  '@sentry/tracing': ^7.0.0
+  '@sentry/vue': ^7.0.0
   '@vitejs/plugin-vue': ^2.3.1
   autoprefixer: ^10.4.7
   axios: ^0.27.2
@@ -34,6 +36,8 @@ dependencies:
   '@ckeditor/ckeditor5-vue': 4.0.1
   '@formkit/themes': 1.0.0-beta.8_tailwindcss@3.0.24
   '@formkit/vue': 1.0.0-beta.8_vue@3.2.36
+  '@sentry/tracing': 7.0.0
+  '@sentry/vue': 7.0.0_vue@3.2.36
   axios: 0.27.2
   daisyui: 2.15.1_ugi4xkrfysqkt4c4y6hkyfj344
   install: 0.13.0
@@ -486,6 +490,72 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+
+  /@sentry/browser/7.0.0:
+    resolution: {integrity: sha512-XJeQA/CIocrmShpfVcccJ2RvZbWZy+OustSbgLP5Vk+ZnzbqKQo1zQ92jO/dUoVIsl5dWpUaOKfT6gXmORf4vQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/core': 7.0.0
+      '@sentry/types': 7.0.0
+      '@sentry/utils': 7.0.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/core/7.0.0:
+    resolution: {integrity: sha512-Wl7MjmahLhuzzByYiWaYTeHKQfF6usnMp+rTTYTBbneuM4MD7TikRt6ybgnxqyqR7nI7ADH/U8OljtiqwnsOcw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/hub': 7.0.0
+      '@sentry/types': 7.0.0
+      '@sentry/utils': 7.0.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/hub/7.0.0:
+    resolution: {integrity: sha512-my4s+SPZiL6BKOK89YNk74QFRejlwVKKSetzz+Wr1cxDLbGXOIHS3uRJlagqOpfthhD1dq8m3WBQnabPf5JlHQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/types': 7.0.0
+      '@sentry/utils': 7.0.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/tracing/7.0.0:
+    resolution: {integrity: sha512-eUHER2RWzm9OtFKQZIr5EwTGM3IU0xJ7l60rnAEbgW5b1bzWC0k/J6EeXeBBfGq7wric/BjH0WKQOnixtXUBpw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/hub': 7.0.0
+      '@sentry/types': 7.0.0
+      '@sentry/utils': 7.0.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/types/7.0.0:
+    resolution: {integrity: sha512-im6iugKKyeOwHWiS3u+S+Ox4F6aJQ2fe76rzTDTlzdCPol4xEqYnB2kujGVVnDYrODR+qVb24ua3OsxXxwzppA==}
+    engines: {node: '>=8'}
+    dev: false
+
+  /@sentry/utils/7.0.0:
+    resolution: {integrity: sha512-wmZNwzl1F/xCvaGX0TLz0+M+mZP8kn5woF770o2eUgXGURIuNsnSd0Vfi0nHuBJfngVeI/3+ofOJ9MH4Co4lIw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/types': 7.0.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/vue/7.0.0_vue@3.2.36:
+    resolution: {integrity: sha512-Qu9kUwVPD1wBNO7bZychc2YtDcixxsAFrPeGNWHs8ZQPshxawB/b7eottpCUDHoPec17iyGJSGDmqRzfvO7LcA==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      vue: 2.x || 3.x
+    dependencies:
+      '@sentry/browser': 7.0.0
+      '@sentry/core': 7.0.0
+      '@sentry/types': 7.0.0
+      '@sentry/utils': 7.0.0
+      tslib: 1.14.1
+      vue: 3.2.36
+    dev: false
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
@@ -2345,6 +2415,10 @@ packages:
       minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
+
+  /tslib/1.14.1:
+    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: false
 
   /type-check/0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}

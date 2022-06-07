@@ -14,6 +14,8 @@ import VueLoading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import App from './App.vue'
 import router from './router'
+import * as Sentry from '@sentry/vue'
+import { BrowserTracing } from '@sentry/tracing'
 
 const app = createApp(App)
 
@@ -22,6 +24,21 @@ const options = {
   position: POSITION.TOP_CENTER,
   timeout: 2100
 }
+
+Sentry.init({
+  app,
+  dsn: 'https://876f6ce10db54412a87093eabf2136b1@o1069250.ingest.sentry.io/6477321',
+  integrations: [
+    new BrowserTracing({
+      routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+      tracingOrigins: ['https://forumi.my.id', /^\//]
+    })
+  ],
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0
+})
 
 app.use(Toast, options)
 app.use(VueAxios, axios)
