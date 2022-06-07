@@ -23,8 +23,12 @@ export default class AuthService {
     if (e.response.data.status_code === 400) {
       const errs = e.response.data.details
 
-      for (const err of errs) {
-        toast.error(err.message)
+      if (typeof errs === 'object') {
+        toast.error(errs.message)
+      } else {
+        for (const err of errs) {
+          toast.error(err.message)
+        }
       }
     } else {
       toast.error('Register failed, something went wrong')
