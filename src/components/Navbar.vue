@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-base-100">
+  <div class="navbar bg-white">
     <div class="flex-1">
       <router-link to="/" class="btn btn-ghost normal-case font-bold text-2xl">
         <img src="../assets/img/logo.png" class="h-8 pr-2" alt="">

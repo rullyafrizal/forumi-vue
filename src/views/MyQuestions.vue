@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen justify-between">
+  <div class="flex flex-col min-h-screen justify-between bg-white">
     <Navbar/>
     <div class="flex items-center justify-center px-5">
       <nav class="flex" aria-label="Breadcrumb">
