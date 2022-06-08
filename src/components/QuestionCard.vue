@@ -1,5 +1,5 @@
 <template>
-  <div class="card w-96 bg-white shadow-lg">
+  <div class="card w-96 bg-base-100 shadow-xl">
     <div class="card-body">
       <div>
         <h2 class="card-title">{{ question.subject }}</h2>

@@ -2,8 +2,8 @@
   <!-- Put this part before </body> tag -->
   <input type="checkbox" id="create-modal" class="modal-toggle" />
   <div class="modal modal-bottom sm:modal-middle">
-    <div class="modal-box bg-white">
-      <h1 class="font-bold text-2xl text-black">Ask New Question</h1>
+    <div class="modal-box">
+      <h1 class="font-bold text-2xl">Ask New Question</h1>
       <div id="forms" class="pt-4">
         <FormKit
             type="text"

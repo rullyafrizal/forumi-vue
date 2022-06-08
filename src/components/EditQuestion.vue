@@ -1,8 +1,8 @@
 <template>
   <!-- Put this part before </body> tag -->
   <input type="checkbox" :id="'edit-question-modal-' + question.id" class="modal-toggle" />
-  <div class="modal modal-bottom sm:modal-middle bg-white">
-    <div class="modal-box bg-white">
+  <div class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
       <h3 class="font-bold text-lg">Edit question #{{ question.id }}</h3>
       <div class="mt-3">
         <FormKit

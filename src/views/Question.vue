@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen justify-between bg-white">
+  <div class="flex flex-col min-h-screen justify-between">
     <Navbar/>
     <div class="flex items-center justify-center px-5 mb-5">
       <nav class="flex" aria-label="Breadcrumb">
@@ -19,8 +19,8 @@
         </ol>
       </nav>
     </div>
-    <div class="min-w-screen flex justify-center px-5 pb-10 bg-white">
-      <div class="card xl:w-1/2 md:w-3/4 sm:w-full bg-white hover:shadow-2xl shadow-xl">
+    <div class="min-w-screen flex justify-center px-5 pb-10">
+      <div class="card xl:w-1/2 md:w-3/4 sm:w-full bg-base-100 hover:shadow-2xl shadow-xl">
         <div v-if="Object.keys(question).length" class="card-body">
           <h2 class="card-title my-2">
             <div class="avatar mr-2">
@@ -63,7 +63,7 @@
 
                   <!-- Put this part before </body> tag -->
                   <input type="checkbox" :id="'dlt-question-modal-' + question.id" class="modal-toggle" />
-                  <div class="modal modal-bottom sm:modal-middle bg-white">
+                  <div class="modal modal-bottom sm:modal-middle">
                     <div class="modal-box">
                       <h3 class="font-bold text-lg">Delete Confirmation #{{ question.id }}</h3>
                       <p class="py-4">Are you sure you want to delete this question?</p>
@@ -131,7 +131,7 @@
                       <!-- Put this part before </body> tag -->
                       <input type="checkbox" :id="'edit-modal-' + answer.id" class="modal-toggle" />
                       <div class="modal modal-bottom sm:modal-middle">
-                        <div class="modal-box bg-white">
+                        <div class="modal-box">
                           <h3 class="font-bold text-lg">Edit answer #{{ answer.id }}</h3>
                           <div class="mt-3">
                             <ckeditor :editor="ckEditor.editor" v-model="editAnswerForm.body" :config="ckEditor.editorConfig"></ckeditor>
@@ -154,7 +154,7 @@
                       <!-- Put this part before </body> tag -->
                       <input type="checkbox" :id="'delete-modal-' + answer.id" class="modal-toggle" />
                       <div class="modal modal-bottom sm:modal-middle">
-                        <div class="modal-box bg-white">
+                        <div class="modal-box">
                           <h3 class="font-bold text-lg">Delete Confirmation #{{ answer.id }}</h3>
                           <p class="py-4">Are you sure you want to delete this answer?</p>
                           <div class="modal-action">
